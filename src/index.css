@@ -1,0 +1,49 @@
+/* Heart Animation */
+@keyframes heartFloat {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+.heart {
+  position: absolute;
+  animation: heartFloat 5s ease-in-out infinite;
+  font-size: 2rem;
+  color: #f4a6d7; /* Pink */
+  animation-duration: calc(5s + random(5s));
+}
+
+/* Envelope hover effect */
+.envelope {
+  transition: transform 0.2s ease-in-out;
+}
+
+.envelope:hover {
+  transform: scale(1.1);
+}
+
+.envelope:active {
+  transform: scale(0.95);
+}
+
+/* Letter scaling animation */
+@keyframes letterScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.letter {
+  animation: letterScale 0.6s ease-out;
+}
