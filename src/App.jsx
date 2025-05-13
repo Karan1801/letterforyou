@@ -1,72 +1,59 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
-import { motion } from 'framer-motion';
+// src/App.jsx
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "./App.css";
 
-export default function RomanticLetter() {
+function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-pink-100 via-pink-200 to-pink-300 flex items-center justify-center relative overflow-hidden px-4">
-      {/* Floating hearts */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute text-xl sm:text-3xl md:text-4xl"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              color: 'red',
-            }}
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: -100 }}
-            transition={{
-              duration: 5,
-              ease: 'easeInOut',
-              repeat: Infinity,
-              repeatType: 'reverse',
-              delay: Math.random() * 2,
-            }}
-          >
-            ❤️
-          </motion.div>
-        ))}
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-pink-200 via-pink-100 to-red-200 flex items-center justify-center p-4">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-6 text-red-600">💌 A Special Note Awaits 💌</h1>
 
-      {/* Content */}
-      <div className="z-10 w-full max-w-md flex justify-center items-center">
-        {!isOpen ? (
+        {!isOpen && (
           <motion.div
-            className="cursor-pointer bg-white shadow-xl rounded-2xl p-6 md:p-8 text-center transform transition-all duration-300"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            whileHover={{ scale: 1.05 }}
+            className="cursor-pointer"
           >
-            <FontAwesomeIcon
-              icon={faEnvelopeOpenText}
-              className="text-red-500 text-5xl md:text-6xl"
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3534/3534060.png"
+              alt="Envelope"
+              className="w-32 h-32 mx-auto"
             />
-            <p className="mt-4 text-base md:text-lg font-medium text-gray-700">
-              Click to open
-            </p>
-          </motion.div>
-        ) : (
-          <motion.div
-            className="bg-white shadow-xl rounded-2xl p-6 md:p-8 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-pink-600 mb-4">
-              To the one who makes my heart skip 💌
-            </h1>
-            <p className="text-gray-700 text-base sm:text-lg md:text-xl">
-              Would you like to go on a date with me? 💖 <br />
-              I promise laughter, sweet moments, and a memory to cherish. 🌹
-            </p>
+            <p className="text-pink-700 mt-3 font-medium">Click to open</p>
           </motion.div>
         )}
+
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ duration: 0.6 }}
+              className="mt-8 bg-white rounded-xl shadow-xl p-6 max-w-md mx-auto"
+            >
+              <h2 className="text-2xl font-bold text-red-500 mb-4">Will You Go on a Date With Me? 💖</h2>
+              <p className="text-gray-700 text-lg">
+                I’ve been thinking about you all day and was wondering if you’d like to go out with me sometime this week.
+              </p>
+              <p className="mt-4 text-gray-700 italic">Let me know… I’m already excited 💕</p>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                className="mt-6 bg-pink-500 text-white px-5 py-2 rounded-full shadow hover:bg-pink-600 transition"
+                onClick={() => alert("Yay! Let's plan it soon ❤️")}
+              >
+                Yes, I’d love to!
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
 }
+
+export default App;
