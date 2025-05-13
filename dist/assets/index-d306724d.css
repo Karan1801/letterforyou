@@ -1,0 +1,1 @@
+@keyframes heartFloat{0%{transform:translateY(0);opacity:.8}to{transform:translateY(-100px);opacity:0}}.heart{font-size:2rem;animation:heartFloat 6s ease-in-out infinite}@keyframes fadeIn{0%{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.animate-fadeIn{animation:fadeIn 1s ease-out}
